@@ -1,6 +1,7 @@
 # coding: utf-8
 
 import argparse
+from pathlib import Path
 import os
 from scrutinizer.ocular.coverage_parser import CoverageParser
 from scrutinizer.ocular.repository_introspector import RepositoryIntrospector
@@ -29,7 +30,8 @@ class App:
             access_token=args.access_token
         )
 
-        xml_data = parser.parse(args.data_file, args.config_file)
+        #xml_data = parser.parse(args.data_file, args.config_file)
+        xml_data = Path(args.data_file).read_text()
 
         try:
             print("Uploading code coverage for '" + repository_name + "' and revision '" + revision + "'... ")
